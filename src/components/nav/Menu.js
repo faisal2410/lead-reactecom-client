@@ -39,12 +39,12 @@ const Menu=()=> {
 
         <div className="dropdown">
           <li>
-            <a
+            <NavLink
               className="nav-link pointer dropdown-toggle"
               data-bs-toggle="dropdown"
             >
               CATEGORIES
-            </a>
+            </NavLink>
 
             <ul
               className="dropdown-menu"
@@ -97,12 +97,12 @@ const Menu=()=> {
         ) : (
           <div className="dropdown">
             <li>
-              <a
+              <NavLink
                 className="nav-link pointer dropdown-toggle"
                 data-bs-toggle="dropdown"
               >
                 {auth?.user?.name?.toUpperCase()}
-              </a>
+              </NavLink>
 
               <ul className="dropdown-menu">
                 <li>
@@ -117,9 +117,9 @@ const Menu=()=> {
                 </li>
 
                 <li className="nav-item pointer">
-                  <a onClick={logout} className="nav-link">
+                  <NavLink onClick={logout} className="nav-link">
                     Logout
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </li>

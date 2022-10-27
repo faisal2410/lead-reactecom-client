@@ -43,7 +43,7 @@ const Login=()=> {
 
   return (
     <div>
-      <Jumbotron title="Login" />
+      <Jumbotron title="Login"  />
 
       <div className="container mt-5">
         <div className="row">

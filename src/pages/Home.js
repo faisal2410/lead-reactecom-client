@@ -54,7 +54,7 @@ const Home=()=> {
 
   return (
     <div>
-      <Jumbotron title="Hello World" sutTitle="Welcome to React E-commerce" />
+      <Jumbotron title="Lead Ecommerce" subTitle="Welcome to Lead E-commerce" />
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-6">

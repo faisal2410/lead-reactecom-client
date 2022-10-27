@@ -2,34 +2,38 @@ import { useState } from "react";
 import Jumbotron from "../../components/cards/Jumbotron";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useAuth } from "../../context/auth";
+// import { useAuth } from "../../context/auth";
 import { useNavigate } from "react-router-dom";
 
 const Register=()=> {
   // state
-  const [name, setName] = useState("Ryan");
-  const [email, setEmail] = useState("ryan@gmail.com");
-  const [password, setPassword] = useState("rrrrrr");
+  const [firstName, setFirstName] = useState("Faisal");
+  const [lastName, setLastName] = useState("Ahmed");
+  const [email, setEmail] = useState("faisalagriart@gmail.com");
+  const [password, setPassword] = useState("MArt@msb2020");
+  const [confirmPassword, setConfirmPassword] = useState("MArt@msb2020");
   // hooks
-  const [auth, setAuth] = useAuth();
+  // const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { data } = await axios.post(`/register`, {
-        name,
+        firstName,
+        lastName,
         email,
         password,
+        confirmPassword
       });
       console.log(data);
       if (data?.error) {
         toast.error(data.error);
       } else {
-        localStorage.setItem("auth", JSON.stringify(data));
-        setAuth({ ...auth, token: data.token, user: data.user });
-        toast.success("Registration successful");
-        navigate("/dashboard/user");
+        // localStorage.setItem("auth", JSON.stringify(data));
+        // setAuth({ ...auth, token: data.token, user: data.user });
+        toast.success("Registration successful. Please Login");
+         navigate("/login");
       }
     } catch (err) {
       console.log(err);
@@ -39,7 +43,7 @@ const Register=()=> {
 
   return (
     <div>
-      <Jumbotron title="Register" />
+      <Jumbotron title="Register"  />
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-6 offset-md-3">
@@ -47,9 +51,17 @@ const Register=()=> {
               <input
                 type="text"
                 className="form-control mb-4 p-2"
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your First name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                autoFocus
+              />
+              <input
+                type="text"
+                className="form-control mb-4 p-2"
+                placeholder="Enter your Last name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 autoFocus
               />
 
@@ -67,6 +79,13 @@ const Register=()=> {
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+              />
+              <input
+                type="password"
+                className="form-control mb-4 p-2"
+                placeholder="Confirm your password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
               />
 
               <button className="btn btn-primary" type="submit">
