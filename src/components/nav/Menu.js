@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import { useNavigate } from "react-router-dom";
 import Search from "../forms/Search";
-import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import { Badge } from "antd";
 
@@ -11,10 +10,8 @@ const Menu=()=> {
   const [auth, setAuth] = useAuth();
   const [cart, setCart] = useCart();
   // hooks
-  const categories = useCategory();
-  const navigate = useNavigate();
-
-  // console.log("categories in menu => ", categories);
+ 
+  const navigate = useNavigate(); 
 
   const logout = () => {
     setAuth({ ...auth, user: null, token: "" });
@@ -32,41 +29,10 @@ const Menu=()=> {
         </li>
 
         <li className="nav-item">
-          <NavLink className="nav-link" aria-current="page" to="/shop">
-            SHOP
+          <NavLink className="nav-link" aria-current="page" to="/searchprogram">
+            SEARCH PROGRAM
           </NavLink>
         </li>
-
-        <div className="dropdown">
-          <li>
-            <NavLink
-              className="nav-link pointer dropdown-toggle"
-              data-bs-toggle="dropdown"
-            >
-              CATEGORIES
-            </NavLink>
-
-            <ul
-              className="dropdown-menu"
-              style={{ height: "300px", overflow: "scroll" }}
-            >
-              <li>
-                <NavLink className="nav-link" to="/categories">
-                  All Categories
-                </NavLink>
-              </li>
-
-              {categories?.map((c) => (
-                <li key={c._id}>
-                  <NavLink className="nav-link" to={`/category/${c.slug}`}>
-                    {c.name}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </li>
-        </div>
-
         <li className="nav-item mt-1">
           <Badge
             count={cart?.length >= 1 ? cart.length : 0}
@@ -74,7 +40,7 @@ const Menu=()=> {
             showZero={true}
           >
             <NavLink className="nav-link" aria-current="page" to="/cart">
-              CART
+              SHORT LISTED
             </NavLink>
           </Badge>
         </li>
@@ -101,7 +67,7 @@ const Menu=()=> {
                 className="nav-link pointer dropdown-toggle"
                 data-bs-toggle="dropdown"
               >
-                {auth?.user?.name?.toUpperCase()}
+                {`Hello ${auth?.user?.firstName?.toUpperCase()} ${auth?.user?.lastName?.toUpperCase()}`}
               </NavLink>
 
               <ul className="dropdown-menu">
@@ -109,17 +75,17 @@ const Menu=()=> {
                   <NavLink
                     className="nav-link"
                     to={`/dashboard/${
-                      auth?.user?.role === 1 ? "admin" : "user"
+                      auth?.user?.role === "admin" ? "admin" : "user"
                     }`}
                   >
                     Dashboard
                   </NavLink>
                 </li>
 
-                <li className="nav-item pointer">
-                  <NavLink onClick={logout} className="nav-link">
+                <li className="nav-item pointer ms-3">
+                  <button onClick={logout} className="btn btn-outline-primary ">
                     Logout
-                  </NavLink>
+                  </button>
                 </li>
               </ul>
             </li>

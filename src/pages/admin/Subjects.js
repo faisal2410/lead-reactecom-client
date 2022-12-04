@@ -6,20 +6,20 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
-const AdminProducts=()=> {
+const AdminSubjects=()=> {
   // context
   const [auth, setAuth] = useAuth();
   // state
-  const [products, setProducts] = useState([]);
+  const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
-    loadProducts();
+    loadSubjects();
   }, []);
 
-  const loadProducts = async () => {
+  const loadSubjects = async () => {
     try {
-      const { data } = await axios.get("/products");
-      setProducts(data);
+      const { data } = await axios.get("/subjects");
+      setSubjects(data);
     } catch (err) {
       console.log(err);
     }
@@ -28,7 +28,7 @@ const AdminProducts=()=> {
   return (
     <>
       <Jumbotron
-        title={`Hello ${auth?.user?.name}`}
+        title={`Hello ${auth?.user?.firstName} ${auth?.user?.lastName}`}
         subTitle="Admin Dashboard"
       />
 
@@ -38,32 +38,33 @@ const AdminProducts=()=> {
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <div className="p-3 mt-2 mb-2 h4 bg-light">Products</div>
+            <div className="p-3 mt-2 mb-2 h4 bg-light">Subjects</div>
+            {/* <pre>{JSON.stringify(subjects,null,4)}</pre> */}
 
-            {products?.map((p) => (
+            {subjects?.map((s) => (
               <Link
-                key={p._id}
-                to={`/dashboard/admin/product/update/${p.slug}`}
+                key={s._id}
+                to={`/dashboard/admin/subject/${s.slug}`}
               >
                 <div className="card mb-3">
                   <div className="row g-0">
                     <div className="col-md-4">
                       <img
-                        src={`${process.env.REACT_APP_API}/product/photo/${p._id}`}
-                        alt={p.name}
+                        src={`${process.env.REACT_APP_API}/subject/photo/${s._id}`}
+                        alt={s.title}
                         className="img img-fluid rounded-start"
                       />
                     </div>
 
                     <div className="col-md-8">
                       <div className="card-body">
-                        <h5 className="card-title">{p?.name}</h5>
+                        <h5 className="card-title">{s?.title}</h5>
                         <p className="card-text">
-                          {p?.description?.substring(0, 160)}...
+                          {s?.description?.substring(0, 160)}...
                         </p>
                         <p className="card-text">
                           <small className="text-muted">
-                            {moment(p.createdAt).format(
+                            {moment(s.createdAt).format(
                               "MMMM Do YYYY, h:mm:ss a"
                             )}
                           </small>
@@ -81,4 +82,4 @@ const AdminProducts=()=> {
   );
 }
 
-export default AdminProducts;
+export default AdminSubjects;

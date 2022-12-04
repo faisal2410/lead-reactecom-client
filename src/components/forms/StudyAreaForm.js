@@ -1,4 +1,4 @@
-const CategoryForm=({
+const StudyAreaForm=({
   value,
   setValue,
   handleSubmit,
@@ -11,7 +11,7 @@ const CategoryForm=({
         <input
           type="text"
           className="form-control p-3"
-          placeholder="Write category name"
+          placeholder="Write Study Area name"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
@@ -28,4 +28,4 @@ const CategoryForm=({
   );
 }
 
-export default CategoryForm;
+export default StudyAreaForm;

@@ -10,22 +10,21 @@ const Search=()=> {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.get(`/products/search/${values?.keyword}`);
-      // console.log(data);
+      const { data } = await axios.get(`/subjects/search/${values?.keyword}`);
+      console.log(data);
       setValues({ ...values, results: data });
-      navigate("/search");
+      navigate("/search");   
     } catch (err) {
       console.log(err);
     }
   };
-
   return (
     <form className="d-flex" onSubmit={handleSubmit}>
       <input
         type="search"
         style={{ borderRadius: "0px" }}
-        className="form-control"
-        placeholder="Search"
+        className="form-control text-center"
+        placeholder="Search courses | Universities"
         onChange={(e) => setValues({ ...values, keyword: e.target.value })}
         value={values.keyword}
       />

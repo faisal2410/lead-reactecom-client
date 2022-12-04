@@ -14,7 +14,7 @@ root.render(
     <AuthProvider>
       <SearchProvider>
         <CartProvider>
-          <App />
+          <App />      
         </CartProvider>
       </SearchProvider>
     </AuthProvider>

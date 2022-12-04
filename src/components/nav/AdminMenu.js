@@ -7,20 +7,25 @@ const AdminMenu=()=> {
 
       <ul className="list-group list-unstyled">
         <li>
-          <NavLink className="list-group-item" to="/dashboard/admin/category">
-            Create category
+          <NavLink className="list-group-item" to="/dashboard/admin/studyArea">
+            Create Study Area
           </NavLink>
         </li>
 
         <li>
-          <NavLink className="list-group-item" to="/dashboard/admin/product">
-            Create product
+          <NavLink className="list-group-item" to="/dashboard/admin/subject">
+            Create Subject
           </NavLink>
         </li>
 
         <li>
-          <NavLink className="list-group-item" to="/dashboard/admin/products">
-            Products
+          <NavLink className="list-group-item" to="/dashboard/admin/subjects">
+            Subjects
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className="list-group-item" to="/dashboard/admin/universityView">
+            University Details
           </NavLink>
         </li>
 

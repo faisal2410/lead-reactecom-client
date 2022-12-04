@@ -4,15 +4,17 @@ import { useAuth } from "../../context/auth";
 import Loading from "./Loading";
 import axios from "axios";
 
+
 const PrivateRoute=()=> {
   // context
   const [auth, setAuth] = useAuth();
   // state
-  const [ok, setOk] = useState(false);
-
+  const [ok, setOk] = useState(false);  
+  
   useEffect(() => {
     const authCheck = async () => {
       const { data } = await axios.get(`/auth-check`);
+      console.log("test========>",data)
       if (data.ok) {
         setOk(true);
       } else {
@@ -23,15 +25,10 @@ const PrivateRoute=()=> {
     if (auth?.token) authCheck();
   }, [auth?.token]);
 
-  // useEffect(() => {
-  //   if (auth?.token) {
-  //     setOk(true);
-  //   } else {
-  //     setOk(false);
-  //   }
-  // }, [auth?.token]);
-
+  
   return ok ? <Outlet /> : <Loading />;
+  
+  
 }
 
 export default PrivateRoute;

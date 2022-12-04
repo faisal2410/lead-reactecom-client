@@ -4,7 +4,7 @@ import Jumbotron from "../../components/cards/Jumbotron";
 import AdminMenu from "../../components/nav/AdminMenu";
 import axios from "axios";
 import moment from "moment";
-import ProductCardHorizontal from "../../components/cards/ProductCardHorizontal";
+import UniversityCardHorizontal from "../../components/cards/SubjectCardHorizontal";
 import { Select } from "antd";
 
 const { Option } = Select;
@@ -15,11 +15,20 @@ const AdminOrders=()=> {
   // state
   const [orders, setOrders] = useState([]);
   const [status, setStatus] = useState([
-    "Not processed",
-    "Processing",
-    "Shipped",
-    "Delivered",
-    "Cancelled",
+    "Case Closed",
+    "Application Received",
+    "Application Submitted to University",
+    "Document Missing",
+    "Conditional Offer received",
+    "UnConditional Offer received",
+    "Tuition fees Paid",
+    "Scheduled for Pre cas interview",
+    "Cas issued",
+    "Visa Application Submitted",
+    "Visa received",
+    "University Enrollment Completed",
+    "Commission Received",  
+    "Rejected"
   ]);
   const [changedStatus, setChangedStatus] = useState("");
 
@@ -50,7 +59,7 @@ const AdminOrders=()=> {
 
   return (
     <>
-      <Jumbotron title={`Hello ${auth?.user?.name}`} subTitle="Dashboard" />
+      <Jumbotron title={`Hello ${auth?.user?.firstName} ${auth?.user?.lastName}`} subTitle="Dashboard" />
 
       <div className="container-fluid">
         <div className="row">
@@ -104,7 +113,7 @@ const AdminOrders=()=> {
                   <div className="container">
                     <div className="row m-2">
                       {o?.products?.map((p, i) => (
-                        <ProductCardHorizontal key={i} p={p} remove={false} />
+                        <UniversityCardHorizontal key={i} p={p} remove={false} />
                       ))}
                     </div>
                   </div>

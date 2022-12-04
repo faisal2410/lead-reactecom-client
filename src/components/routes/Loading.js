@@ -8,10 +8,17 @@ const Loading=({ path = "login" })=> {
   // hooks
   const navigate = useNavigate();
   const location = useLocation();
+  // console.log(location)
 
+  /**
+   * Note: 
+   * The setInterval() method calls a function at specified intervals (in milliseconds).
+   * The clearInterval() method clears a timer set with the setInterval() method.
+   * */ 
+ 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCount((currentCount) => --currentCount);
+      setCount((currentCount) => --currentCount);  
     }, 1000);
     // redirect once count is equal to 0
     count === 0 &&

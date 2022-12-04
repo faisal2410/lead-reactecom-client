@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import Jumbotron from "../components/cards/Jumbotron";
 import axios from "axios";
-import ProductCard from "../components/cards/ProductCard";
+import SubjectViewCard from "../components/cards/SubjectViewCard";
 
-const Home=()=> {
-  const [products, setProducts] = useState([]);
+const Home = () => {
+  const [subjects, setSubjects] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    loadProducts();
+    loadSubjects();
     getTotal();
   }, []);
 
@@ -21,17 +21,17 @@ const Home=()=> {
 
   const getTotal = async () => {
     try {
-      const { data } = await axios.get("/products-count");
+      const { data } = await axios.get("/subjects-count");
       setTotal(data);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const loadProducts = async () => {
+  const loadSubjects = async () => {
     try {
-      const { data } = await axios.get(`/list-products/${page}`);
-      setProducts(data);
+      const { data } = await axios.get(`/list-subjects/${page}`);
+      setSubjects(data);
     } catch (err) {
       console.log(err);
     }
@@ -40,8 +40,8 @@ const Home=()=> {
   const loadMore = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`/list-products/${page}`);
-      setProducts([...products, ...data]);
+      const { data } = await axios.get(`/list-universities/${page}`);
+      setSubjects([...subjects, ...data]);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -49,35 +49,26 @@ const Home=()=> {
     }
   };
 
-  const arr = [...products];
-  const sortedBySold = arr?.sort((a, b) => (a.sold < b.sold ? 1 : -1));
+  // const arr = [...subjects];
+  // const sortedBySold = arr?.sort((a, b) => (a.sold < b.sold ? 1 : -1));
 
   return (
     <div>
-      <Jumbotron title="Lead Ecommerce" subTitle="Welcome to Lead E-commerce" />
+      <Jumbotron
+        title="Explore your study abroad options"
+        subTitle="From lookup and admission to visa and arrival at your dream university, we guide you every step of the way."
+      />
+     
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-12">
             <h2 className="p-3 mt-2 mb-2 h4 bg-light text-center">
-              New Arrivals
+            Pick and Choose your options
             </h2>
             <div className="row">
-              {products?.map((p) => (
-                <div className="col-md-6" key={p._id}>
-                  <ProductCard p={p} />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="col-md-6">
-            <h2 className="p-3 mt-2 mb-2 h4 bg-light text-center">
-              Best Sellers
-            </h2>
-            <div className="row">
-              {sortedBySold?.map((p) => (
-                <div className="col-md-6" key={p._id}>
-                  <ProductCard p={p} />
+              {subjects?.map((s) => (
+                <div className="col-md-4" key={s._id}>
+                  <SubjectViewCard s={s} />
                 </div>
               ))}
             </div>
@@ -85,7 +76,7 @@ const Home=()=> {
         </div>
 
         <div className="container text-center p-5">
-          {products && products.length < total && (
+          {subjects && subjects.length < total && (
             <button
               className="btn btn-warning btn-lg col-md-6"
               disabled={loading}
@@ -101,6 +92,6 @@ const Home=()=> {
       </div>
     </div>
   );
-}
+};
 
 export default Home;

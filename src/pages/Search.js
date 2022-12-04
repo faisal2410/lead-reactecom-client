@@ -1,5 +1,5 @@
 import { useSearch } from "../context/search";
-import ProductCard from "../components/cards/ProductCard";
+import SubjectViewCard from "../components/cards/SubjectViewCard";
 import Jumbotron from "../components/cards/Jumbotron";
 
 const Search=()=> {
@@ -11,16 +11,16 @@ const Search=()=> {
         title="Search results"
         subTitle={
           values?.results?.length < 1
-            ? "No products found"
-            : `Found ${values?.results?.length} products`
+            ? "No subjects found"
+            : `Found ${values?.results?.length} subjects`
         }
       />
 
       <div className="container mt-3">
         <div className="row">
-          {values?.results?.map((p) => (
-            <div key={p._id} className="col-md-4">
-              <ProductCard p={p} />
+          {values?.results?.map((s) => (
+            <div key={s._id} className="col-md-4">
+              <SubjectViewCard s={s} />
             </div>
           ))}
         </div>

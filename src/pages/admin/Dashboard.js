@@ -9,7 +9,7 @@ const AdminDashboard=()=> {
   return (
     <>
       <Jumbotron
-        title={`Hello ${auth?.user?.name}`}
+        title={`Hello ${auth?.user?.firstName} ${auth?.user?.lastName}`}
         subTitle="Admin Dashboard"
       />
 
@@ -22,7 +22,7 @@ const AdminDashboard=()=> {
             <div className="p-3 mt-2 mb-2 h4 bg-light">Admin Information</div>
 
             <ul className="list-group">
-              <li className="list-group-item">{auth?.user?.name}</li>
+              <li className="list-group-item">{auth?.user?.firstName} {auth?.user?.lastName}</li>
               <li className="list-group-item">{auth?.user?.email}</li>
               <li className="list-group-item">Admin</li>
             </ul>

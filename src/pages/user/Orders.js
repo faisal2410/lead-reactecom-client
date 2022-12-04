@@ -4,7 +4,7 @@ import Jumbotron from "../../components/cards/Jumbotron";
 import UserMenu from "../../components/nav/UserMenu";
 import axios from "axios";
 import moment from "moment";
-import ProductCardHorizontal from "../../components/cards/ProductCardHorizontal";
+import ProductCardHorizontal from "../../components/cards/SubjectCardHorizontal";
 
 const UserOrders=()=> {
   // context
@@ -27,7 +27,7 @@ const UserOrders=()=> {
 
   return (
     <>
-      <Jumbotron title={`Hello ${auth?.user?.name}`} subTitle="Dashboard" />
+      <Jumbotron title={`Hello ${auth?.user?.firstName} ${auth?.user?.lastName}`} subTitle="Dashboard" />
 
       <div className="container-fluid">
         <div className="row">

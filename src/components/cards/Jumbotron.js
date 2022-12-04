@@ -1,7 +1,10 @@
+import Search from "../forms/Search";
+
 const Jumbotron=({
   title,
-  subTitle="Welcome to Lead Ecommerce"
+  subTitle="Welcome to HF Consultancy"
 })=> {
+ 
   return (
     <div
       className="container-fluid jumbotron"
@@ -11,6 +14,7 @@ const Jumbotron=({
         <div className="col text-center p-5">
           <h1 className="fw-bold text-white">{title}</h1>
           <p className="lead">{subTitle}</p>
+          <Search></Search>         
         </div>
       </div>
     </div>

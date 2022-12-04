@@ -1,13 +1,13 @@
 import moment from "moment";
 import { useCart } from "../../context/cart";
 
-const ProductCardHorizontal=({ p, remove = true })=> {
+const SubjectCardHorizontal=({ s, remove = true })=> {
   // context
   const [cart, setCart] = useCart();
 
-  const removeFromCart = (productId) => {
+  const removeFromCart = (subjectId) => {
     let myCart = [...cart];
-    let index = myCart.findIndex((item) => item._id === productId);
+    let index = myCart.findIndex((item) => item._id === subjectId);
     myCart.splice(index, 1);
     setCart(myCart);
     localStorage.setItem("cart", JSON.stringify(myCart));
@@ -15,14 +15,13 @@ const ProductCardHorizontal=({ p, remove = true })=> {
 
   return (
     <div
-      className="card mb-3"
-      // style={{ maxWidth: 540 }}
+      className="card mb-3"      
     >
       <div className="row g-0">
         <div className="col-md-4">
           <img
-            src={`${process.env.REACT_APP_API}/product/photo/${p._id}`}
-            alt={p.name}
+            src={`${process.env.REACT_APP_API}/subject/photo/${s._id}`}
+            alt={s.name}
             style={{
               height: "150px",
               width: "150px",
@@ -35,13 +34,13 @@ const ProductCardHorizontal=({ p, remove = true })=> {
         <div className="col-md-8">
           <div className="card-body">
             <h5 className="card-title">
-              {p.name}{" "}
-              {p?.price?.toLocaleString("en-US", {
+              {s.title}{" "}
+              {s?.yearlyTuitionFees?.toLocaleString("en-US", {
                 style: "currency",
                 currency: "USD",
               })}
             </h5>
-            <p className="card-text">{`${p?.description?.substring(
+            <p className="card-text">{`${s?.description?.substring(
               0,
               50
             )}..`}</p>
@@ -51,13 +50,13 @@ const ProductCardHorizontal=({ p, remove = true })=> {
         <div className="d-flex justify-content-between">
           <p className="card-text">
             <small className="text-muted">
-              Listed {moment(p.createdAt).fromNow()}
+              Listed {moment(s.createdAt).fromNow()}
             </small>
           </p>
           {remove && (
             <p
               className="text-danger mb-2 pointer"
-              onClick={() => removeFromCart(p._id)}
+              onClick={() => removeFromCart(s._id)}
             >
               Remove
             </p>
@@ -68,4 +67,4 @@ const ProductCardHorizontal=({ p, remove = true })=> {
   );
 }
 
-export default ProductCardHorizontal;
+export default SubjectCardHorizontal;

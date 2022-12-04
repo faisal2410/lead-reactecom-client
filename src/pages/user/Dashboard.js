@@ -5,10 +5,11 @@ import UserMenu from "../../components/nav/UserMenu";
 const  UserDashboard=()=> {
   // context
   const [auth, setAuth] = useAuth();
+  // console.log("auth testing",auth)
 
   return (
     <>
-      <Jumbotron title={`Hello ${auth?.user?.name}`} subTitle="Dashboard" />
+      <Jumbotron title={`Hello ${auth?.user?.firstName} ${auth?.user?.lastName}`} subTitle="Dashboard" />
 
       <div className="container-fluid">
         <div className="row">
@@ -19,7 +20,7 @@ const  UserDashboard=()=> {
             <div className="p-3 mt-2 mb-2 h4 bg-light">User Information</div>
 
             <ul className="list-group">
-              <li className="list-group-item">{auth?.user?.name}</li>
+              <li className="list-group-item">{`${auth?.user?.firstName} ${auth?.user?.lastName}`}</li>
               <li className="list-group-item">{auth?.user?.email}</li>
             </ul>
           </div>

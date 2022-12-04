@@ -19,18 +19,18 @@ const UserCartSidebar=()=> {
 
   useEffect(() => {
     if (auth?.token) {
-      getClientToken();
+      // getClientToken();
     }
   }, [auth?.token]);
 
-  const getClientToken = async () => {
-    try {
-      const { data } = await axios.get("/braintree/token");
-      setClientToken(data.clientToken);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const getClientToken = async () => {
+  //   try {
+  //     const { data } = await axios.get("/braintree/token");
+  //     setClientToken(data.clientToken);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   const cartTotal = () => {
     let total = 0;
@@ -66,7 +66,7 @@ const UserCartSidebar=()=> {
 
   return (
     <div className="col-md-4 mb-5">
-      <h4>Your cart summary</h4>
+      <h4>Your Favorite Subjects summary</h4>
       Total / Address / Payments
       <hr />
       <h6>Total: {cartTotal()}</h6>
